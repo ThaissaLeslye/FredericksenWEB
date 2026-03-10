@@ -2,7 +2,6 @@
     display: block;
     height: 100dvh;
     width: 100%;
-    overflow: hidden;
     background-color: var(--baby-pink); 
 
 
@@ -35,6 +34,7 @@ section {
     width: 100%;
 }
 
+
 .welcome-text {
     width: 245px;
     text-align: center;
@@ -47,9 +47,9 @@ section {
 .google-login-button {
     display: flex;
     align-items: center;
-    padding-left: 20px;
+    justify-content: center;
     margin-top: 35px;
-    width: 311px;
+    width: 100px;
     height: 56px;
     background-color: var(--white-gray);
     border: none;
@@ -59,8 +59,4 @@ section {
     color: #61677D;
     font-weight: 500;
     font-size: var(--big-normal-txt);
-}
-
-.google-login-button > img {
-    padding-right: 20px;
 }
