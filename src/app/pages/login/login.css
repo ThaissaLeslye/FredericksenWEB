@@ -1,0 +1,55 @@
+:host {
+    display: block;
+    height: 100dvh;
+    width: 100%;
+    background-color: var(--baby-pink); 
+
+
+    background-image: url(/images/Cover.png); 
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100% 70dvh;
+}
+
+.image-container img {
+    padding-top: 100px;
+    width: 75%;
+}
+
+.content-area  {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 170px;
+}
+
+.welcome-text {
+    width: 245px;
+    text-align: center;
+
+    font-size: var(--medium-txt);
+    font-weight: bolder;
+    color: var(--lavander-blush);
+}
+
+.google-login-button {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    margin-top: 35px;
+    width: 311px;
+    height: 56px;
+    background-color: var(--white-gray);
+    border: none;
+    border-radius: 14px;
+
+    font-family: "Poppins", sans-serif;
+    color: #61677D;
+    font-weight: 500;
+    font-size: var(--big-normal-txt);
+}
+
+.google-login-button > img {
+    padding-right: 20px;
+}

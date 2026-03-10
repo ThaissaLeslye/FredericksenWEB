@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --lavander-blush: #FFF1F7;
+    --baby-pink: #FFA0CE;;
+    --shadow-gray: #565B60;
+    --white-gray: #F5F9FE;
+
+    --medium-txt: 24px;
+    --big-normal-txt: 16px;
+    --normal-txt: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    font-family: "Onest", sans-serif;
+}
+
