@@ -1,3 +1,4 @@
+//auth.ts
 import { Injectable, inject, NgZone } from '@angular/core';
 import { 
   Auth, 
@@ -12,7 +13,6 @@ import {
   onAuthStateChanged
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,85 +23,63 @@ export class AuthService {
   private router = inject(Router);
   private ngZone = inject(NgZone);
 
-  // Observable do usuário para o restante do app (Header, Guards, etc)
+  // Observable exposed for guards and UI components
   user$ = user(this.auth);
 
-  constructor() {
-    // Iniciamos a checagem de redirecionamento assim que o serviço nasce
-    //this.initAuth();
+  /**
+   * Blocks Angular bootstrap until Firebase resolves redirect and initial state.
+   * Does NOT handle routing.
+   */
+  public async initAuth(): Promise<void> {
+    console.log('🔍 [Auth] Initializing and blocking bootstrap...');
+    
+try {
+      const redirectResult = await getRedirectResult(this.auth);
+      console.log('🔄 [Auth] Redirect Result:', redirectResult ? 'User Found' : 'NULL');
+    } catch (error: any) {
+      console.error('❌ [Auth] Redirect error:', error.code, error.message);
+    }
+
+    // 2. Await the first definitive state from Firebase
+    return new Promise((resolve) => {
+      const unsubscribe = onAuthStateChanged(this.auth, (user) => {
+        console.log(user ? `🏠 [Auth] Session active: ${user.email}` : '👤 [Auth] No user logged in.');
+        unsubscribe(); // Prevent memory leaks; we only need the first state
+        resolve();     // Release the APP_INITIALIZER block
+      });
+    });
   }
 
-  /**
-   * Inicialização e captura de Redirect
-   */
-  public async initAuth() {
-    console.log('🔍 [Auth] Iniciando monitoramento de autenticação...');
-    
+  async loginWithGoogle() {
+    const provider = new GoogleAuthProvider();
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
     try {
-      // 1. Resolve o resultado do redirecionamento do Google (se houver)
-      const result = await getRedirectResult(this.auth);
-      if (result?.user) {
-        console.log('✅ [Auth] Login recuperado via Redirect:', result.user.displayName);
-        this.navigateToHome();
-        return;
+      await setPersistence(this.auth, browserLocalPersistence);
+      
+      if (isMobile || !isMobile) {
+        console.log('📱 Mobile detected: Using Redirect...');
+        await signInWithRedirect(this.auth, provider);
+      } else {
+        console.log('💻 Desktop detected: Using PopUp...');
+        const result = await signInWithPopup(this.auth, provider);
+        if (result.user) this.navigateToHome();
       }
-
-      // 2. Se não foi redirect, observa o estado da sessão (usuário já logado antes)
-      onAuthStateChanged(this.auth, (user) => {
-        if (user) {
-          console.log('🏠 [Auth] Sessão ativa detectada:', user.displayName);
-          if (this.router.url.includes('login') || this.router.url === '/') {
-            this.navigateToHome();
-          }
-        } else {
-          console.log('👤 [Auth] Nenhum usuário logado.');
-        }
-      });
-
-    } catch (error: any) {
-      console.error('❌ [Auth] Erro na inicialização:', error.code);
+    } catch (error) {
       this.handleAuthError(error);
     }
   }
 
-
-
-async loginWithGoogle() {
-  const provider = new GoogleAuthProvider();
-  
-  // Detecta se é celular/mobile
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-  try {
-    // 💡 PASSO CRUCIAL: Garante que a sessão sobreviva ao redirect
-    await setPersistence(this.auth, browserLocalPersistence);
-
-    if (isMobile) {
-      console.log('📱 Mobile detectado: Usando Redirect...');
-      return await signInWithRedirect(this.auth, provider);
-    } else {
-      console.log('💻 Desktop detectado: Usando PopUp...');
-      const result = await signInWithPopup(this.auth, provider);
-      if (result.user) this.navigateToHome();
-    }
-  } catch (error) {
-    this.handleAuthError(error);
-  }
-}
-
   async logout() {
     try {
       await signOut(this.auth);
-      console.log('🚪 Sessão encerrada.');
+      console.log('🚪 Session ended.');
       this.ngZone.run(() => this.router.navigate(['/login']));
     } catch (error) {
-      console.error('❌ Erro ao deslogar:', error);
+      console.error('❌ Logout error:', error);
     }
   }
 
-  /**
-   * Centraliza a navegação para Home garantindo que o Angular perceba a mudança
-   */
   private navigateToHome() {
     this.ngZone.run(() => {
       this.router.navigate(['/home']);
@@ -109,14 +87,6 @@ async loginWithGoogle() {
   }
 
   private handleAuthError(error: any) {
-    const errorMap: Record<string, string> = {
-      'auth/popup-closed-by-user': 'Janela fechada pelo usuário.',
-      'auth/cancelled-popup-request': 'Múltiplos popups abertos.',
-      'auth/unauthorized-domain': 'Domínio não autorizado no Firebase Console!',
-    };
-    
-    console.error('⚠️ Detalhes do erro:', error.code, error.message);
-    const msg = errorMap[error.code] || 'Erro desconhecido na autenticação.';
-    console.warn(msg);
+    console.error('⚠️ Error details:', error.code, error.message);
   }
 }

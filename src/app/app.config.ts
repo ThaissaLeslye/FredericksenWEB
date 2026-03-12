@@ -1,3 +1,4 @@
+//app.config.ts
 import { APP_INITIALIZER, ApplicationConfig, provideZoneChangeDetection, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { environment } from '../environments/environment'; // Use o caminho geral, não o .development
