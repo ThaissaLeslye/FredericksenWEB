@@ -1,3 +1,4 @@
+//login.ts
 import { Component, inject, AfterViewInit } from '@angular/core';
 import { AuthService } from '../../core/services/auth';
 import { environment } from '../../../environments/environment';

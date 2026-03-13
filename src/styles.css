@@ -17,3 +17,43 @@
     font-family: "Onest", sans-serif;
 }
 
+/* =========================================
+   Estado de Carregamento Global (Splash)
+   ========================================= */
+.global-loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--lavander-blush);
+  color: var(--baby-pink);
+  font-size: var(--medium-txt);
+  font-family: 'Onest', sans-serif;
+  letter-spacing: 1px;
+
+  animation: pulseText 2s ease-in-out infinite;
+}
+
+.global-loader::after {
+  content: "";
+  width: 48px;
+  height: 48px;
+  margin-top: 20px;
+  border: 3px solid rgba(244, 194, 194, 0.2); 
+  border-top: 3px solid var(--baby-pink);    
+  border-radius: 50%;
+  
+
+  animation: smoothSpin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+@keyframes smoothSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseText {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
