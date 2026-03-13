@@ -4,12 +4,9 @@ import {
   Auth, 
   GoogleAuthProvider, 
   user, 
-  signInWithRedirect,
+  signInWithCredential,
   getRedirectResult,
   signOut,
-  signInWithPopup,
-  browserLocalPersistence,
-  setPersistence,
   onAuthStateChanged
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
@@ -33,12 +30,12 @@ export class AuthService {
   public async initAuth(): Promise<void> {
     console.log('🔍 [Auth] Initializing and blocking bootstrap...');
     
-try {
-      const redirectResult = await getRedirectResult(this.auth);
-      console.log('🔄 [Auth] Redirect Result:', redirectResult ? 'User Found' : 'NULL');
-    } catch (error: any) {
-      console.error('❌ [Auth] Redirect error:', error.code, error.message);
-    }
+  try {
+        const redirectResult = await getRedirectResult(this.auth);
+        console.log('🔄 [Auth] Redirect Result:', redirectResult ? 'User Found' : 'NULL');
+      } catch (error: any) {
+        console.error('❌ [Auth] Redirect error:', error.code, error.message);
+      }
 
     // 2. Await the first definitive state from Firebase
     return new Promise((resolve) => {
@@ -48,26 +45,6 @@ try {
         resolve();     // Release the APP_INITIALIZER block
       });
     });
-  }
-
-  async loginWithGoogle() {
-    const provider = new GoogleAuthProvider();
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-    try {
-      await setPersistence(this.auth, browserLocalPersistence);
-      
-      if (isMobile || !isMobile) {
-        console.log('📱 Mobile detected: Using Redirect...');
-        await signInWithRedirect(this.auth, provider);
-      } else {
-        console.log('💻 Desktop detected: Using PopUp...');
-        const result = await signInWithPopup(this.auth, provider);
-        if (result.user) this.navigateToHome();
-      }
-    } catch (error) {
-      this.handleAuthError(error);
-    }
   }
 
   async logout() {
@@ -89,4 +66,29 @@ try {
   private handleAuthError(error: any) {
     console.error('⚠️ Error details:', error.code, error.message);
   }
+
+/**
+   * 🚀 Novo método: Recebe o token do Google Identity Services
+   * e faz o login "silencioso" no Firebase.
+   */
+  async loginWithGoogleToken(idToken: string) {
+    try {
+      console.log('🔐 [Auth] Autenticando no Firebase com Token GIS...');
+      
+      // Cria uma credencial a partir do token recebido
+      const credential = GoogleAuthProvider.credential(idToken);
+      
+      // Faz o login no Firebase sem abrir popups nem redirecionar!
+      const result = await signInWithCredential(this.auth, credential);
+      
+      if (result.user) {
+        console.log('✅ [Auth] Login com GIS Sucesso:', result.user.email);
+        this.navigateToHome();
+      }
+    } catch (error: any) {
+      this.handleAuthError(error);
+    }
+
+  }
+
 }

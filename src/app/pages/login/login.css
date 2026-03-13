@@ -44,23 +44,9 @@ section {
     color: var(--lavander-blush);
 }
 
-.google-login-button {
+.google-login-container {
     display: flex;
     align-items: center;
-    padding-left: 20px;
     margin-top: 35px;
-    width: 311px;
-    height: 56px;
-    background-color: var(--white-gray);
-    border: none;
-    border-radius: 14px;
-
-    font-family: "Poppins", sans-serif;
-    color: #61677D;
-    font-weight: 500;
-    font-size: var(--big-normal-txt);
 }
 
-.google-login-button > img {
-    padding-right: 20px;
-}

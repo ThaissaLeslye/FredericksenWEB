@@ -2,11 +2,11 @@
 import { Routes } from '@angular/router';
 import { authGuard } from '../app/auth-guard';
 
-export const routes: Routes = [
-{ 
+export const routes: Routes = [ 
+  { 
     path: '', 
-    loadComponent: () => import('./pages/home/home').then(m => m.Home),
-    canActivate: [authGuard] 
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
   { 
     path: 'login', 
