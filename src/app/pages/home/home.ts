@@ -13,7 +13,7 @@ export class Home {
 
 
   // Criamos o nomeUsuario que você usou no HTML
-  user = toSignal(this.authService.user$);
+  user = toSignal(this.authService.userState$);
   nomeUsuario = computed(() => this.user()?.displayName);
 
   logout() {

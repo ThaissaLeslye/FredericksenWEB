@@ -1,3 +1,9 @@
 <main>
+  @if (authService.isLoading$ | async) {
+  <div class="global-loader">
+    <p>Realizando login...</p>
+  </div>
+  } @else {
   <router-outlet></router-outlet>
+  }
 </main>
