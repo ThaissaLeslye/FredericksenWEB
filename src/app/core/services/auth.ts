@@ -1,5 +1,5 @@
 //auth.ts
-import { Injectable, inject, NgZone } from '@angular/core';
+import { Injectable, inject, NgZone, isDevMode } from '@angular/core';
 import { 
   Auth, 
   GoogleAuthProvider, 
@@ -30,19 +30,19 @@ export class AuthService {
    * Does NOT handle routing.
    */
   public async initAuth(): Promise<void> {
-    console.log('🔍 [Auth] Initializing and blocking bootstrap...');
+    this.debugLog('[Auth] Initializing and blocking bootstrap...');
     
   try {
         const redirectResult = await getRedirectResult(this.auth);
-        console.log('🔄 [Auth] Redirect Result:', redirectResult ? 'User Found' : 'NULL');
+        this.debugLog('[Auth] Redirect Result:', redirectResult ? 'User Found' : 'NULL');
       } catch (error: any) {
-        console.error('❌ [Auth] Redirect error:', error.code, error.message);
+        console.error('[Auth] Redirect error:', error.code, error.message);
       }
 
     // 2. Await the first definitive state from Firebase
     return new Promise((resolve) => {
       const unsubscribe = onAuthStateChanged(this.auth, (user) => {
-        console.log(user ? `🏠 [Auth] Session active: ${user.email}` : '👤 [Auth] No user logged in.');
+        this.debugLog(user ? `[Auth] Session active: ${user.email}` : '[Auth] No user logged in.');
         unsubscribe(); // Prevent memory leaks; we only need the first state
         resolve();     // Release the APP_INITIALIZER block
       });
@@ -52,10 +52,10 @@ export class AuthService {
   async logout() {
     try {
       await signOut(this.auth);
-      console.log('🚪 Session ended.');
+      this.debugLog('Session ended.');
       this.ngZone.run(() => this.router.navigate(['/login']));
     } catch (error) {
-      console.error('❌ Logout error:', error);
+      console.error('Logout error:', error);
     }
   }
 
@@ -68,7 +68,7 @@ export class AuthService {
   private handleAuthError(error: any) {
     this.notificationService.showError("Erro ao fazer login. Tente novamente.");
 
-    console.error('⚠️ [Auth Error]:', error.code, error.message);
+    console.error('[Auth Error]:', error.code, error.message);
   }
 
 /**
@@ -77,7 +77,7 @@ export class AuthService {
    */
   async loginWithGoogleToken(idToken: string) {
     try {
-      console.log('🔐 [Auth] Autenticando no Firebase com Token GIS...');
+      this.debugLog('[Auth] Autenticando no Firebase com Token GIS...');
       
       // Cria uma credencial a partir do token recebido
       const credential = GoogleAuthProvider.credential(idToken);
@@ -86,13 +86,19 @@ export class AuthService {
       const result = await signInWithCredential(this.auth, credential);
       
       if (result.user) {
-        console.log('✅ [Auth] Login com GIS Sucesso:', result.user.email);
+        this.debugLog('[Auth] Login com GIS Sucesso:', result.user.email);
         this.navigateToHome();
       }
     } catch (error: any) {
       this.handleAuthError(error);
     }
 
+  }
+
+  private debugLog(message: string, ...optionalParams: any[]) {
+    if (isDevMode()) {
+      console.log(message, ...optionalParams);
+    }
   }
 
 }
