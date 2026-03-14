@@ -10,7 +10,7 @@ import {
   onAuthStateChanged
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-
+import { NotificationService } from './notification';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +20,7 @@ export class AuthService {
   private auth = inject(Auth); 
   private router = inject(Router);
   private ngZone = inject(NgZone);
+  private notificationService = inject(NotificationService);
 
   // Observable exposed for guards and UI components
   user$ = user(this.auth);
@@ -65,7 +66,9 @@ export class AuthService {
   }
 
   private handleAuthError(error: any) {
-    console.error('⚠️ Error details:', error.code, error.message);
+    this.notificationService.showError("Erro ao fazer login. Tente novamente.");
+
+    console.error('⚠️ [Auth Error]:', error.code, error.message);
   }
 
 /**
