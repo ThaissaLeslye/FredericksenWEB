@@ -1,6 +1,7 @@
+//app.ts
 import { Component, signal, inject} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AuthService } from './core/services/auth';
+import { AuthService } from './core/services/auth/auth';
 import { AsyncPipe } from '@angular/common';
 
 @Component({

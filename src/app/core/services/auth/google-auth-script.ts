@@ -1,3 +1,4 @@
+//google-auth-script.ts
 import { inject, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/core';
 

@@ -10,8 +10,8 @@ import {
   onAuthStateChanged,
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { NotificationService } from './notification';
-import { LoggerService } from './logger';
+import { NotificationService } from '../shared/notification/notification';
+import { LoggerService } from '../shared/logger/logger';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({

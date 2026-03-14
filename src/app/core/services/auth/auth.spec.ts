@@ -1,10 +1,10 @@
 // app/core/services/auth.spec.ts
 import { TestBed } from '@angular/core/testing';
-import { AuthService } from './auth';
+import { AuthService } from '../auth/auth';
 import { NgZone, provideZoneChangeDetection } from '@angular/core';
 import { Router } from '@angular/router';
-import { NotificationService } from './notification';
-import { LoggerService } from './logger';
+import { NotificationService } from '../shared/notification/notification';
+import { LoggerService } from '../shared/logger/logger';
 
 import * as fireAuth from '@angular/fire/auth';
 
