@@ -1,7 +1,7 @@
 // app/app.spec.ts
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
-import { AuthService } from './core/services/auth';
+import { AuthService } from './core/services/auth/auth';
 import { of } from 'rxjs';
 
 describe('App Component', () => {

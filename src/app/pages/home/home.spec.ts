@@ -1,7 +1,7 @@
 // app/pages/home/home.spec.ts
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Home } from './home';
-import { AuthService } from '../../core/services/auth';
+import { AuthService } from '../../core/services/auth/auth';
 import { of } from 'rxjs'; // Para simular o observable
 
 describe('Home Component', () => {

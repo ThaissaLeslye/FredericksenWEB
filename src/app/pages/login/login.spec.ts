@@ -3,8 +3,8 @@
 // app/pages/login/login.spec.ts
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Login } from './login';
-import { AuthService } from '../../core/services/auth';
-import { GoogleAuthScriptService } from '../../core/services/google-auth-script';
+import { AuthService } from '../../core/services/auth/auth';
+import { GoogleAuthScriptService } from '../../core/services/auth/google-auth-script';
 
 
 describe('Login Component', () => {

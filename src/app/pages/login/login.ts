@@ -1,8 +1,8 @@
 //login.ts
 import { Component, inject, AfterViewInit } from '@angular/core';
-import { AuthService } from '../../core/services/auth';
+import { AuthService } from '../../core/services/auth/auth';
 import { environment } from '../../../environments/environment';
-import { GoogleAuthScriptService } from '../../core/services/google-auth-script';
+import { GoogleAuthScriptService } from '../../core/services/auth/google-auth-script';
 
 @Component({
   selector: 'app-login',

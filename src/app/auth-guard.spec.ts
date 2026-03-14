@@ -2,8 +2,8 @@
 import { TestBed } from '@angular/core/testing';
 import { Router, UrlTree } from '@angular/router';
 import { authGuard } from './auth-guard';
-import { AuthService } from './core/services/auth';
-import { LoggerService } from './core/services/logger';
+import { AuthService } from './core/services/auth/auth';
+import { LoggerService } from './core/services/shared/logger/logger';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 
