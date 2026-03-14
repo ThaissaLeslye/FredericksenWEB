@@ -7,6 +7,8 @@
     --medium-txt: 24px;
     --big-normal-txt: 16px;
     --normal-txt: 12px;
+
+    --medium-weight: 600;
 }
 
 * {
@@ -31,6 +33,7 @@
   font-size: var(--medium-txt);
   font-family: 'Onest', sans-serif;
   letter-spacing: 1px;
+  font-weight: var(--medium-weight);
 
   animation: pulseText 2s ease-in-out infinite;
 }
