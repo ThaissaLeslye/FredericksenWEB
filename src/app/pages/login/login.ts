@@ -10,6 +10,7 @@ import { GoogleAuthScriptService } from '../../core/services/google-auth-script'
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
+
 export class Login implements AfterViewInit {
   authService = inject(AuthService);
   googleAuthScriptService = inject(GoogleAuthScriptService);
