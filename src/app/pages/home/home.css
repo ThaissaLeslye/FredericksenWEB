@@ -2,6 +2,7 @@
     display: block;
     height: 100dvh;
     width: 100%;
+    overflow: hidden;
     background-color: var(--baby-pink); 
 
 
@@ -20,7 +21,11 @@ section {
     width: 100%;
 
     padding-top: 15%;
-    padding-bottom: 25px;
+    padding-bottom: 35px;
+}
+
+.image-container {
+    width: 100%;
 }
 
 .image-container img {
@@ -33,7 +38,6 @@ section {
     flex-direction: column;
     width: 100%;
 }
-
 
 .welcome-text {
     width: 245px;
