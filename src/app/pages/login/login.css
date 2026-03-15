@@ -1,0 +1,52 @@
+:host {
+    display: block;
+    height: 100dvh;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--baby-pink); 
+
+
+    background-image: url(/images/Cover.png); 
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100% 70dvh;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: center;
+    height: 100dvh; 
+    width: 100%;
+
+    padding-top: 15%;
+    padding-bottom: 25px;
+}
+
+.image-container img {
+    width: 65%;
+}
+
+.content-area  {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.welcome-text {
+    width: 245px;
+    text-align: center;
+
+    font-size: var(--medium-txt);
+    font-weight: bolder;
+    color: var(--lavander-blush);
+}
+
+.google-login-container {
+    display: flex;
+    align-items: center;
+    margin-top: 35px;
+}
+
