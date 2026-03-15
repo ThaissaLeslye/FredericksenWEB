@@ -11,7 +11,7 @@ Optei por desenvolver esse app tendo em vista os desafios e apredizados:
 
 ## (Versão 0.1.0)
 
-![Demonstração v0.1.0](public/images/fredericksen-0.1.0.gif)
+<img src="public/images/fredericksen-0.1.0.gif" alt="Demonstração v0.1.0" height="600">
 
 ### Funcionalidades
 
