@@ -44,3 +44,6 @@ Thumbs.db
 
 # firebase
 .firebase/
+
+# Secrets
+/environments
