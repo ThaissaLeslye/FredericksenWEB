@@ -40,9 +40,11 @@ describe('authGuard', () => {
   });
 
   const runGuard = () => {
-    return TestBed.runInInjectionContext(() => 
-      authGuard({} as any, { url: '/home' } as any)
-    ) as Observable<boolean | UrlTree>;
+    return TestBed.runInInjectionContext(() => {
+      const result = authGuard({} as any, { url: '/home' } as any);
+      console.log('Retorno real do Guard:', result);
+      return result;
+    }) as Observable<boolean | UrlTree>;
   };
 
   it('deve permitir o acesso (retornar true) se o usuário estiver logado', (done) => {

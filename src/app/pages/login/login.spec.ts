@@ -14,6 +14,9 @@ describe('Login Component', () => {
   let googleAuthScriptMock: any;
 
   beforeEach(async () => {
+    (window as any).google = {
+      accounts: { id: { initialize: jasmine.createSpy(), renderButton: jasmine.createSpy() } }
+    };
     authServiceMock = {
       loginWithGoogleToken: jasmine.createSpy('loginWithGoogleToken')
     };

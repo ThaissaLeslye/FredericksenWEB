@@ -26,7 +26,6 @@ describe('AuthService', () => {
         AuthService,
         { provide: fireAuth.Auth, useValue: {} }, 
         { provide: Router, useValue: routerMock },
-        { provide: NgZone, useValue: { run: (fn: Function) => fn() } },
         { provide: NotificationService, useValue: notificationMock },
         { provide: LoggerService, useValue: loggerMock },
       ],
@@ -50,12 +49,9 @@ describe('AuthService', () => {
     it('deve tratar erro e chamar a notificação se o login falhar', async () => {
       spyOn(service as any, 'handleAuthError').and.callThrough();
 
-      try {
-        await service.loginWithGoogleToken(''); 
-      } catch (e) {
-        expect(service['handleAuthError']).toHaveBeenCalled();
-        expect(notificationMock.showError).toHaveBeenCalledWith('Erro ao fazer login. Tente novamente.');
-      }
+      await service.loginWithGoogleToken(''); 
+      expect(service['handleAuthError']).toHaveBeenCalled();
+      expect(notificationMock.showError).toHaveBeenCalledWith('Erro ao fazer login. Tente novamente.');
     });
   });
 });
