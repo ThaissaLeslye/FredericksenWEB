@@ -21,6 +21,14 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
+      - name: Gerar arquivo de Environment dinamicamente
+        run: |
+          mkdir -p src/environments
+          cat <<EOT >> src/environments/environment.ts
+          export const environment = ${{ secrets.ENVIRONMENT }};
+          EOT
+          cp src/environments/environment.ts src/environments/environment.development.ts
+
       - name: Rodar Testes
         run: npm run test:ci
 
