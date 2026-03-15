@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: Rodar Testes
-        run: npm run test -- --watch=false --browsers=ChromeHeadless
+        run: npm run test:ci
 
       - name: Fazer o Build de Produção
         run: npm run build
