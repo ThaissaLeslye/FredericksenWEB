@@ -21,8 +21,16 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
+      - name: Gerar arquivo de Environment dinamicamente
+        run: |
+          mkdir -p src/environments
+          cat <<EOT > src/environments/environment.ts
+          ${{ secrets.ENVIRONMENT }}
+          EOT
+          cp src/environments/environment.ts src/environments/environment.development.ts
+
       - name: Rodar Testes
-        run: npm run test -- --watch=false --browsers=ChromeHeadless
+        run: npm run test:ci
 
       - name: Fazer o Build de Produção
         run: npm run build
@@ -33,4 +41,4 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
           channelId: live
-          projectId: SEU_PROJECT_ID_AQUI
+          projectId: fredericksen-app
