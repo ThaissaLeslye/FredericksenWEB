@@ -1,9 +1,13 @@
 /*style.css*/
 :root {
-    --lavander-blush: #FFF1F7;
-    --baby-pink: #FFA0CE;;
-    --shadow-gray: #565B60;
-    --white-gray: #F5F9FE;
+    --highlight-main-color: #8E4A4A;
+    --main-color: #C35050;
+    --highlight-light-color: #FFF1F7;
+    --light-color: #FFF;
+
+    --main-gradient-left-to-right: linear-gradient(to right, var(--highlight-main-color), var(--main-color));
+    --main-gradient-top-left-to-bottom-right: linear-gradient(to bottom right, var(--highlight-main-color), var(--main-color));
+
 
     --medium-txt: 24px;
     --big-normal-txt: 16px;
@@ -16,6 +20,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+
 
     font-family: "Onest", sans-serif;
 }
@@ -86,7 +91,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
     margin: auto;
 
-    background-color: var(--shadow-gray);
+    background-color: #999;
   }
 }
 
