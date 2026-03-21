@@ -37,10 +37,19 @@ export class Login implements AfterViewInit {
     });
 
     const btnContainer = document.getElementById('google-btn-container');
+    
     if (btnContainer) {
       google.accounts.id.renderButton(
         btnContainer,
-        { theme: 'outline', size: 'large', width: 280, locale: 'pt-BR', type: 'standard' }
+{ 
+        type: 'standard',   
+        theme: 'outline', 
+        size: 'large',      
+        shape: 'pill',      
+        logo_alignment: 'left',
+        width: 250,         
+        locale: 'pt-BR' 
+      }
       );
     } else {
       console.error('[ERROR] Div container do botão não encontrada no HTML!');
@@ -51,4 +60,6 @@ export class Login implements AfterViewInit {
     console.log('Token recebido do GIS! Repassando para o Firebase...');
     this.authService.loginWithGoogleToken(response.credential);
   }
+
+
 }
