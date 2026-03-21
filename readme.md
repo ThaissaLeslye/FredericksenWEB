@@ -9,9 +9,9 @@ Optei por desenvolver esse app tendo em vista os desafios e apredizados:
 
 ---
 
-## (Versão 0.1.0)
+## (Versão 0.2.0)
 
-<img src="public/images/fredericksen-0.1.0.gif" alt="Demonstração v0.1.0" height="600">
+<img src="public/images/fredericksen-0.2.0.png" alt="Demonstração v0.1.0" height="600">
 
 ### Funcionalidades
 
