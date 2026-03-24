@@ -9,11 +9,13 @@
     --main-gradient-top-left-to-bottom-right: linear-gradient(to bottom right, var(--highlight-main-color), var(--main-color));
 
 
-    --medium-txt: 24px;
-    --big-normal-txt: 16px;
-    --normal-txt: 12px;
+    --large-txt: 24px;
+    --medium-txt: 16px;
+    --small-txt: 12px;
 
+    --bold-weight: 900;
     --medium-weight: 600;
+    --light-weight: 200;
 }
 
 * {
@@ -34,6 +36,10 @@ html, body {
   position: fixed;
 }
 
+main {
+  padding: 10px 25px;
+  background-color: var(--light-color);
+}
 /* =========================================
    Estado de Carregamento Global (Splash)
    ========================================= */
@@ -84,14 +90,5 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 /* Telas maiores que 600px de largura */
-@media (min-width: 600px ) {
-  body {
-    width: 450px !important; 
-    position: unset;
 
-    margin: auto;
-
-    background-color: #999;
-  }
-}
 
