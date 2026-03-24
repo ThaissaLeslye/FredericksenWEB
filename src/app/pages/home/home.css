@@ -23,9 +23,7 @@
     color: var(--main-color);
 }
 
-.avatar {
-    height: 55px;
+app-ui-avatar {
     width: 55px;
-    border-radius: 100px;
-    border: 2px solid var(--main-color);
+    height: 55px;
 }
