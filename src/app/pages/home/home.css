@@ -26,4 +26,11 @@
 app-ui-avatar {
     width: 55px;
     height: 55px;
+
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+app-ui-avatar:hover {
+    opacity: 0.8;
 }

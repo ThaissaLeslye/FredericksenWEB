@@ -36,6 +36,19 @@ html, body {
   position: fixed;
 }
 
+h1, h2 {
+  font-weight: normal;
+}
+
+h1 {
+  font-size: var(--large-txt);
+}
+
+
+h2 {
+  font-size: var(--medium-txt);
+}
+
 main  .main-container {
   padding: 10px 25px;
 }
