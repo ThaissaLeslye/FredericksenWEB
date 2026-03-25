@@ -1,0 +1,23 @@
+<!-- profile.html -->
+<div class="profile-container main-container">
+
+    <section class="profile-header">
+        <app-ui-avatar></app-ui-avatar>
+        <h1 class="user-name"> {{ nomeUsuario() }} </h1>
+        <h2 class="user-email"> {{ emailUsuario() }} </h2>
+
+
+        <button class="btn-logout" (click)="logout()">
+            <span class="btn-text">SAIR</span>
+            <span class="material-icons">logout</span>
+        </button>
+    </section>
+
+    <section class="profile-info">
+    </section>
+
+    <section class="profile-footer">
+
+    </section>
+
+</div>

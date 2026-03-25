@@ -1,7 +1,31 @@
-.avatar-wrapper img {
+/* .profile-img {
     width: 100%;
-    height: 100%;
+    width: 100%;
 
     border-radius: 100%;
     border: 2px solid var(--main-color);
+} */
+
+.avatar-container {
+    display: grid;
+    place-items: center; 
+    align-items: end;
+    position: relative;
+    width: 100%;
+}
+
+.cat-border {
+    grid-area: 1 / 1; 
+    width: 100%; 
+    z-index: 1; 
+    pointer-events: none;
+    margin-bottom: -2.14%;    
+}
+
+.profile-img {
+    grid-area: 1 / 1;      
+    width: 65%;
+    object-fit: cover;
+    border-radius: 100%; 
+    z-index: 2;    
 }
