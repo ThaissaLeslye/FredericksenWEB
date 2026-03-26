@@ -1,0 +1,118 @@
+.card-container {
+    width: 100%;
+    padding: 10px;
+    padding-bottom: 1px;
+    margin: 15px 0;
+
+    border-radius: 5px;
+}
+.card-header {
+    text-align: center;
+}
+
+.card-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px;
+    margin: 10px 0;
+
+    border-radius: 5px;
+
+    font-size: var(--normal-txt);
+    font-weight: var(--light-weight);
+}
+
+.card-section .label {
+    font-weight: var(--medium-weight);
+    display: inline;
+    margin-right: 4px;
+}
+
+.section-content {
+    display: block;
+    width: 100%;
+    line-height: 1.6;
+}
+
+.tags-container, .add-item-box input {
+    display: inline;
+    color: var(--light-color) !important;
+}
+
+.tag,.add-item-box input {
+    display: inline-flex;
+    margin-right: 5px;
+    align-items: center;  
+    background-color: var(--main-color);
+    border-radius: 5px;
+    padding: 0 5px;
+}
+
+.actions {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+i {
+    font-size: var(--medium-txt);
+    padding-left: 3px;
+    cursor: pointer;
+} 
+
+/* Estilo para o Modo de Edição (opcional, para não quebrar o layout) */
+.add-item-box {
+  display: inline-flex; /* Mantém o campo de adicionar na mesma linha do texto */
+  align-items: center;
+  vertical-align: middle;
+  margin-left: 5px;
+  color: var(--main-color);
+  height: 100%;
+}
+
+.add-item-box input {
+    border: none;
+    height: 100%;
+}
+
+.add-item-box input::placeholder {
+    color: var(--light-color);
+}
+
+.add-item-box input:focus, .edit-input:focus  {
+    outline: none;
+}
+
+.edit-input {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+/* CARD LIGHT THEME */
+.light {
+    color: var(--main-color)
+}
+
+.card-section.light {
+    background-color: var(--highlight-light-color);
+}
+
+.card-container {
+    width: 100%;
+}
+
+/* CARD DARK THEME */
+.main {
+    color: var(--light-color)
+}
+
+.card-section.main {
+    background-color: var(--highlight-main-color);
+}
+
+.card-container {
+    width: 100%;
+}

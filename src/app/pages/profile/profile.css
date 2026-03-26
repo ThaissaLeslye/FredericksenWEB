@@ -50,3 +50,7 @@ app-ui-avatar img:last-child {
 .btn-logout:hover {
     filter: brightness(0.95); 
 }
+
+app-ui-card > div{
+    background-color: var(--light-color);
+}

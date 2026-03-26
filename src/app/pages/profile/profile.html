@@ -14,10 +14,12 @@
     </section>
 
     <section class="profile-info">
+        <app-ui-card title="INFORMAÇÕES DE SAÚDE" theme="light" [cardContent]="profileData()"
+            (onSave)="updateProfileData($event)"></app-ui-card>
     </section>
 
     <section class="profile-footer">
 
     </section>
 
-</div>
+</div>+

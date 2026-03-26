@@ -101,6 +101,13 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
-/* Telas maiores que 600px de largura */
+/* =========================================
+    Classes de estilo
+   ========================================= */
+.light {
+  background-color: var(--light-color);
+}
 
-
+.main {
+  background-color: var(--main-color);
+}

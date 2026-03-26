@@ -1,0 +1,55 @@
+<div class="card-container {{ theme }}">
+    <div class="card-header">
+        <h3>{{ title }}</h3>
+    </div>
+
+    <div class="card-content">
+        @for (info of cardContent; track info.label; let i = $index) {
+        <div class="card-section {{ theme }}">
+
+            <div class="section-content">
+                <span class="label">{{ info.label }}: </span>
+
+                @if (info.type === 'text') {
+                @if (editingIndex === i) {
+                <input [(ngModel)]="tempValue" class="edit-input">
+                } @else {
+                <span class="value">{{ info.value }}</span>
+                }
+                }
+
+                @if (info.type === 'list') {
+                <div class="tags-container">
+                    @if (editingIndex === i) {
+                    @for (item of tempValue; track $index; let j = $index) {
+                    <span class="tag edit-mode">
+                        {{ item }}
+                        <i class="material-icons remove-tag" (click)="removeListItem(j)">close</i>
+                    </span>
+                    }
+                    <div class="add-item-box">
+                        <input [(ngModel)]="newItemText" placeholder="Adicionar..." (keyup.enter)="addListItem()">
+                        <i class="material-icons add-btn" (click)="addListItem()">add</i>
+                    </div>
+                    } @else {
+                    @for (item of info.value; track $index) {
+                    <span class="tag">{{ item }}</span>
+                    }
+                    }
+                </div>
+                }
+            </div>
+
+            <div class="actions">
+                @if (editingIndex === i) {
+                <i class="material-icons save-btn" (click)="confirmSave(i)">check</i>
+                <i class="material-icons cancel-btn" (click)="cancelEdit()">close</i>
+                } @else {
+                <i class="material-icons edit-btn" (click)="startEdit(i, info)">edit</i>
+                }
+            </div>
+
+        </div>
+        }
+    </div>
+</div>

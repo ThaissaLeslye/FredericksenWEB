@@ -1,7 +1,8 @@
 //app.config.ts
 import { APP_INITIALIZER, ApplicationConfig, provideZoneChangeDetection, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { environment } from '../environments/environment'; // Use o caminho geral, não o .development
+import { environment } from '../environments/environment'; 
+import { provideHttpClient } from '@angular/common/http';
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
@@ -17,6 +18,10 @@ export function initializeAuthApp(authService: AuthService) {
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+
+    provideHttpClient(),
+
     provideZoneChangeDetection({ eventCoalescing: true }), 
     
     provideRouter(routes),

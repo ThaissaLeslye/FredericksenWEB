@@ -1,0 +1,20 @@
+{
+  "profileData": [
+    {
+      "label": "MEDICAMENTOS",
+      "value": ["Quetiapina", "Citalopram", "Lítio", "Carbamazepina"],
+      "type": "list"
+    },
+    {
+      "label": "ALERGIAS",
+      "value": "N/A",
+      "type": "text"
+    },
+    {
+      "label": "TIPO SANGUÍNEO",
+      "value": "O+",
+      "type": "text",
+      "class": "card-small-section"
+    }
+  ]
+}
